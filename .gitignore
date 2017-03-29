@@ -5,3 +5,6 @@ node_modules
 #Service stuffs
 service/src.js
 service/.serverless
+
+#Secret stuffs
+client/secret.js

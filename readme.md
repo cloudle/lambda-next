@@ -13,3 +13,9 @@ Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally 
 - [ ] It could emulate DynamoDB locally. 
 - [ ] It could emulate Graphql execution context locally. 
 - [ ] It could do publish/subscribe stuff.
+
+## For web Clients (Vue.js)
+Use Aws IOT's Device Gateway for pub/sub..
+
+## Referenced articles
+- http://dev.classmethod.jp/cloud/aws/aws-iot-mqtt-over-websocket/
