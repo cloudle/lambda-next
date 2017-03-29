@@ -1,0 +1,7 @@
+#Node and IDE stuffs
+.idea
+node_modules
+
+#Service stuffs
+service/src.js
+service/.serverless

@@ -1,0 +1,26 @@
+{
+  "name": "lambda-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "test": "node ./test/schema",
+    "test-live": "nodemon ./test/schema"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "graphql": "^0.9.1",
+    "graphql-server-lambda": "^0.6.0",
+    "serverless-webpack": "^1.0.0-rc.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-latest": "^6.24.0",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
