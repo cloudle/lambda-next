@@ -1,6 +1,5 @@
 # Basic idea:
-Aws lambda targeted's graphql endpoint which write on Es and could be locally emulate/ tested on lighting fast speed.
-
+Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally emulate/ tested on lighting fast speed.
 
 ## Scripts:
 - "npm start" for watch and build lambda bundle (which executed by aws lambda).
