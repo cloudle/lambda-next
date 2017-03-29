@@ -6,10 +6,10 @@ const logMode = process.env.LOG;
 
 new WebpackDevServer(webpack(config), {
 	publicPath: config.output.publicPath,
-	contentBase: 'web',
+	contentBase: 'client',
 	hot: true,
 	historyApiFallback: {
-		index: 'app.html',
+		index: 'index.html',
 	},
 	stats: {
 		assets:         false,

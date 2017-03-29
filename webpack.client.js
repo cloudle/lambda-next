@@ -36,7 +36,7 @@ module.exports = {
 	output: {
 		publicPath: publicPath,
 		path: path.join(__dirname, 'client'),
-		filename: '[name].bundle.js',
+		filename: 'bundle.js',
 		chunkFilename: "[name].js"
 	},
 	resolve: {
