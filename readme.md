@@ -3,6 +3,7 @@ Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally 
 
 ## Scripts:
 - "npm start" for watch and build lambda bundle (which executed by aws lambda).
+- "npm run client" to run client app (browser) locally.
 - "npm test" for testing schema offline (run essential '{ greeting }' query)
 - "npm run test-live" watched version of "npm test"
 
@@ -16,6 +17,10 @@ Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally 
 
 ## For web Clients (Vue.js)
 Use Aws IOT's Device Gateway for pub/sub..
+
+## ElastiCache check list:
+- Create elasticCache (Redis)
+- Configure VPC group for serverless (Lambda need this to connect to ElastiCache)
 
 ## Referenced articles
 - http://dev.classmethod.jp/cloud/aws/aws-iot-mqtt-over-websocket/

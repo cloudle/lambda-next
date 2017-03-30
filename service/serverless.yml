@@ -9,6 +9,13 @@ provider:
 functions:
   greeting:
     handler: handler.greeting
+    vpc:
+      securityGroupIds:
+        - sg-87ba56fc
+      subnetIds:
+        - subnet-41bbdc26
+        - subnet-c591288c
+        - subnet-88190ad0
     events:
       - http:
           path: /

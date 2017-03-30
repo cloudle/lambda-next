@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "graphql": "^0.9.1",
-    "graphql-server-lambda": "^0.6.0"
+    "graphql-server-lambda": "^0.6.0",
+    "redis": "^2.7.1"
   }
 }
