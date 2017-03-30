@@ -1,16 +1,26 @@
 import { createClient } from 'redis';
 
-const endpoint = 'werner-cache.e2nrtw.0001.usw2.cache.amazonaws.com',
-	client = createClient(endpoint, {});
+const endpoint = 'werner-cache.e2nrtw.0001.usw2.cache.amazonaws.com';
 
 export function increaseCounter () {
+	const client = createClient({ host: endpoint, port: 6379 });
+
 	return new Promise((resolve, reject) => {
 		client.get("counter", (error, value) => {
-			console.log(error, value);
-			const next = error ? 0 : value + 1;
-			client.set("counter", next);
+			if (error) handleFail(reject, error, client);
+
+			const next = value ? parseInt(value) + 1 : 0;
+			client.set("counter", next, (error, reply) => {
+				if (error) handleFail(reject, error);
+				client.quit(); //!Important, to release lambda function.
+			});
 
 			resolve(next);
 		});
 	});
+}
+
+function handleFail (reject, error, client) {
+	client && client.quit();
+	reject(error);
 }

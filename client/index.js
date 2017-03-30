@@ -3,8 +3,8 @@ import { createEndpoint } from './utils/request';
 const endpoint = createEndpoint(
 	'us-west-2',
 	'a2xygykkoj5mgz.iot.us-west-2.amazonaws.com',
-	'AKIAIHGUEWWKM4QFN3RQ',
-	'B37OpVqoR8LNbee+JHai99HsvRBsx7QBXR8CGrbj');
+	'AWS_KEY',
+	'AWS_SECRET');
 
 const clientId = Math.random().toString(36).substring(7);
 const client = new Paho.MQTT.Client(endpoint, clientId);
@@ -31,7 +31,7 @@ function send (content) {
 }
 
 function onMessage(message) {
-	data.messages.push(message.payloadString);
+	// data.messages.push(message.payloadString);
 	console.log("message received: " + message.payloadString);
 }
 

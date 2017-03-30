@@ -9,6 +9,12 @@ provider:
 functions:
   greeting:
     handler: handler.greeting
+    events:
+      - http:
+          path: /
+          method: get
+  api:
+    handler: handler.graphql
     vpc:
       securityGroupIds:
         - sg-87ba56fc
@@ -16,12 +22,6 @@ functions:
         - subnet-41bbdc26
         - subnet-c591288c
         - subnet-88190ad0
-    events:
-      - http:
-          path: /
-          method: get
-  api:
-    handler: handler.graphql
     events:
       - http:
           path: /graphql
