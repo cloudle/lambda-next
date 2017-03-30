@@ -24,6 +24,5 @@ Use Aws IOT's Device Gateway for pub/sub..
 
 ## Referenced articles
 - http://dev.classmethod.jp/cloud/aws/aws-iot-mqtt-over-websocket/
-- https://serverless.zone/aws-lambda-in-a-vpc-with-the-serverless-framework-7c3b92c151ad
 - https://github.com/robzhu/graphql/blob/62ea0d48beef1fca6707ec4b49a975dc700273ac/rfcs/Subscriptions.md
 - https://dev-blog.apollodata.com/a-proposal-for-graphql-subscriptions-1d89b1934c18
