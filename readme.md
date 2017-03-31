@@ -10,11 +10,11 @@ Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally 
 
 ## Features
 - [x] It should support Es2015 stuffs on Node.js runtime (transpiled).
-- [x] It should be able to test locally *\*need more work**.
-- [x] It support advanced Graphiql endpoint which allow multiple session.  
-- [x] It could emulate Lambda, Graphql execution locally.
+- [x] It should be able to test locally! (emulate Lambda, Graphql execution)
+- [x] It support advanced GraphiQl endpoint which allow multiple session.  
 - [x] It could hot inject code updates to local server (no need restart).
-- [ ] It could emulate DynamoDB locally.
+- [x] It could emulate Redis (ElastiCache) locally using production lambda code.
+- [ ] It could emulate DynamoDB locally using lambda production code.
 - [ ] It could do publish/subscribe stuff.
 
 ## For web Clients (React.js)
