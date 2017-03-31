@@ -18,6 +18,7 @@ export default {
 			.then(next => next);
 	},
 	resolve () {
+		console.log("It actually just relove!");
 		return increaseCounter()
 			.then(next => next);
 	}

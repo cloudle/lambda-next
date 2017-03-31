@@ -10,15 +10,30 @@ import Tab from './graphiqlTab';
 export default class GraphWorkspace extends Component {
 	constructor (props) {
 	  super(props);
+	  const url = localStorage.getItem('apiUrl') || 'https://u602208hbb.execute-api.us-west-2.amazonaws.com/dev/graphql';
 	  this.state = {
 	    urlVisible: true,
+			urlInput: url,
+			url,
 	  }
 	}
 
 	render () {
 		const visibleUrlStyle = this.state.urlVisible ? {
-			backgroundColor: '#999999',
-		} : {};
+				backgroundColor: '#999999',
+			} : {},
+			graphQLFetcher = (graphQLParams) => {
+				let token = localStorage.getItem("sysConfigs"),
+					headers = {'Content-Type': 'application/json'};
+
+				if (token) headers['Authorization'] = token;
+
+				return fetch(this.state.url, {
+					method: 'POST',
+					headers,
+					body: JSON.stringify(graphQLParams),
+				}).then(response => response.json());
+			};
 
 		return <View style={styles.container}>
 			<View style={styles.headingContainer}>
@@ -32,6 +47,7 @@ export default class GraphWorkspace extends Component {
 						<Button
 							onPress={() => this.setState({urlVisible: !this.state.urlVisible})}
 							wrapperStyle={[{margin: 8,}, visibleUrlStyle]}
+							innerStyle={{padding: 4, paddingLeft: 8, paddingRight: 8}}
 							title="url"/>
 					</View>
 				</View>
@@ -53,23 +69,21 @@ export default class GraphWorkspace extends Component {
 				<Input
 					wrapperStyle={styles.urlWrapper}
 					floatingLabel="GraphQL endpoint"
-					value="https://u602208hbb.execute-api.us-west-2.amazonaws.com/dev/graphql"/>
+					value={this.state.urlInput}
+					onChangeText={this.urlChange.bind(this)}
+					onBlur={this.updateEndpoint.bind(this)}/>
 			</View>
 		}
 	}
-}
 
-function graphQLFetcher(graphQLParams) {
-	let token = localStorage.getItem("sysConfigs"),
-		headers = {'Content-Type': 'application/json'};
+	urlChange (next) {
+		this.setState({urlInput: next});
+	}
 
-	if (token) headers['Authorization'] = token;
-
-	return fetch('https://u602208hbb.execute-api.us-west-2.amazonaws.com/dev/graphql', {
-		method: 'POST',
-		headers,
-		body: JSON.stringify(graphQLParams),
-	}).then(response => response.json());
+	updateEndpoint () {
+		localStorage.setItem('apiUrl', this.state.urlInput);
+		this.setState({url: this.state.urlInput});
+	}
 }
 
 const styles = StyleSheet.create({
