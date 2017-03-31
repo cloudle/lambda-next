@@ -7,8 +7,8 @@ import { guid, query, Relay } from './utils';
 const endpoint = createEndpoint(
 	'us-west-2',
 	'a2xygykkoj5mgz.iot.us-west-2.amazonaws.com',
-	'AWS_KEY',
-	'AWS_SECRET');
+	'AKIAIZS43HB57SPETYPQ',
+	'Ye7OSqhUpOoafF1i9hmx7BZnceCuzW1K1jTqqYNz');
 
 const clientId = Math.random().toString(36).substring(7);
 const client = new Paho.MQTT.Client(endpoint, clientId);
