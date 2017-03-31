@@ -1,13 +1,14 @@
 import { GraphQLString } from 'graphql';
 import { increaseCounter } from '../../cache';
-
-let counter = 0;
+import { publish } from '../../utils/subscriptionManager';
 
 export default {
 	type: GraphQLString,
 	resolve () {
-		counter++;
 		return increaseCounter()
-			.then(next => `Hello world, ${next}.${counter}!`);
+			.then(next => {
+				publish('counterIncrease');
+				return `Hello world, ${next}!`;
+			});
 	}
 }

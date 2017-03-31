@@ -3,9 +3,9 @@ import { User } from '../types';
 export default {
 	type: User,
 	description: 'An account with profile and authentication stuffs',
-	resolve () {
+	resolve (root, args, ast) {
 		return {
-			id: "0001",
+			id: root['clientId'],
 			name: "Cloud",
 		}
 	}

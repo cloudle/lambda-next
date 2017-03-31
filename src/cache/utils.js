@@ -17,15 +17,17 @@ export function execute (callback) {
 	});
 }
 
-export const increaseCounter = execute((client) => {
-	return new Promise((resolve, reject) => {
-		client.get("counter", (error, value) => {
-			if (error) reject(error);
+export function increaseCounter () {
+	return execute((client) => {
+		return new Promise((resolve, reject) => {
+			client.get("counter", (error, value) => {
+				if (error) reject(error);
 
-			const next = value ? parseInt(value) + 1 : 0;
-			client.set("counter", next, (error, reply) => {
-				if (error) { reject(error) } else resolve(next);
+				const next = value ? parseInt(value) + 1 : 0;
+				client.set("counter", next, (error, reply) => {
+					if (error) { reject(error) } else resolve(next);
+				})
 			})
-		})
+		});
 	});
-});
+}
