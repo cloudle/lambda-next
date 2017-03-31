@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import GraphiQL from 'client/components/graphiql';
+import GraphiQL from 'graphiql';
 
 import fetch from 'isomorphic-fetch';
 import 'graphiql/graphiql.css';
@@ -10,7 +10,7 @@ function onClickToolbarButton (event) {
 }
 
 export default function () {
-	return <View style={{position: 'absolute', top: 60, right: 0, left: 0, bottom: 0}}>
+	return <View style={{position: 'absolute', top: 0, right: 0, left: 0, bottom: 0}}>
 			<GraphiQL fetcher={graphQLFetcher}>
 				<GraphiQL.Toolbar>
 					{/*<GraphiQL.ToolbarButton*/}
@@ -29,7 +29,7 @@ function graphQLFetcher(graphQLParams) {
 
 	if (token) headers['Authorization'] = token;
 
-	return fetch(`${window.location.protocol}//${window.location.hostname}:4000/wire`, {
+	return fetch('https://u602208hbb.execute-api.us-west-2.amazonaws.com/dev/graphql', {
 		method: 'POST',
 		headers,
 		body: JSON.stringify(graphQLParams),
