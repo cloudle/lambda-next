@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { execute } from '../src/index';
+import { execute } from './index';
 import cors from 'cors';
 
 const router = express.Router();

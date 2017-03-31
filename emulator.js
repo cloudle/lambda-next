@@ -6,12 +6,12 @@ const express = require('express'),
 
 if (!production) {
 	const chokidar = require('chokidar');
-	const watcher = chokidar.watch('./emulator');
+	const watcher = chokidar.watch('./src');
 
 	watcher.on('ready', function() {
 		watcher.on('all', function() {
 			Object.keys(require.cache).forEach(function(id) {
-				if (/[\/\\]emulator[\/\\]/.test(id)) {
+				if (/[\/\\]src[\/\\]/.test(id)) {
 					delete require.cache[id];
 				}
 			});
@@ -22,7 +22,7 @@ if (!production) {
 }
 
 app.use(function (req, res, next) {
-	require('./emulator/index')(req, res, next)
+	require('./src/emulator')(req, res, next)
 });
 
 app.listen(port, '0.0.0.0', function (err, result) {
