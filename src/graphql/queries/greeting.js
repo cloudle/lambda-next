@@ -7,6 +7,7 @@ export default {
 	type: GraphQLString,
 	resolve () {
 		counter++;
-		return increaseCounter().then(next => `Hello world, ${next}.${counter}!`);
+		return increaseCounter()
+			.then(next => `Hello world, ${next}.${counter}!`);
 	}
 }

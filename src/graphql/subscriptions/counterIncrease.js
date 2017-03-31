@@ -8,6 +8,7 @@ let counter = 0;
 export default {
 	type: Int,
 	resolve () {
-		return counter++;
+		return increaseCounter()
+			.then(next => next);
 	}
 };

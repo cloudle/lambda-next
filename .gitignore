@@ -8,3 +8,4 @@ service/.serverless
 
 #Secret stuffs
 client/secret.js
+client/index.js
