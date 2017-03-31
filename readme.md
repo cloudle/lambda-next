@@ -13,7 +13,7 @@ Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally 
 - [x] It should be able to test locally *\*need more work**.
 - [x] It support advanced Graphiql endpoint which allow multiple session.  
 - [x] It could emulate Lambda, Graphql execution locally.
-- [x] It could hot inject code updates to local server (no need to restart node/lambda server code).
+- [x] It could hot inject code updates to local server (no need restart).
 - [ ] It could emulate DynamoDB locally.
 - [ ] It could do publish/subscribe stuff.
 
