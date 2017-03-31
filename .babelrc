@@ -1,3 +1,11 @@
 {
-  "presets": ["latest", "react-native"]
+  "presets": ["latest", "react-native"],
+  "plugins": [
+    ["transform-react-remove-prop-types", { "mode": "wrap" }],
+    "transform-decorators-legacy",
+    "transform-function-bind",
+    ["module-resolver", {
+      "root": ["./src"]
+    }]
+  ]
 }

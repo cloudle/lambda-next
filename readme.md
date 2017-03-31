@@ -15,8 +15,15 @@ Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally 
 - [ ] It could emulate Graphql execution context locally. 
 - [ ] It could do publish/subscribe stuff.
 
-## For web Clients (Vue.js)
-Use Aws IOT's Device Gateway for pub/sub..
+## For web Clients (React.js)
+Run following command to get it run..
+* `npm run vendor` make the rebuild lighting fast (under 200ms).
+ 
+```
+  npm install 
+  npm run vendor
+  npm run client
+```
 
 ## ElastiCache check list:
 - Create elasticCache (Redis)

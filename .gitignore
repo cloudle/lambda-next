@@ -2,10 +2,13 @@
 .idea
 node_modules
 
+#Web bundles
+web/
+!web/index.html
+
 #Service stuffs
 service/src.js
 service/.serverless
 
 #Secret stuffs
 client/secret.js
-client/index.js

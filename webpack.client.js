@@ -6,7 +6,7 @@ const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
 const prod = env === 'prod';
 const publicPath = `http://0.0.0.0:${port}/`;
-const entry = './client/index.js';
+const entry = './index.web.js';
 
 const hot = [
 	'react-hot-loader/patch',
@@ -25,6 +25,10 @@ if (env === 'dev') {
 	plugins.push(new webpack.HotModuleReplacementPlugin());
 	plugins.push(new webpack.NamedModulesPlugin());
 	plugins.push(new webpack.NoEmitOnErrorsPlugin());
+	plugins.push(new webpack.DllReferencePlugin({
+		context: '.',
+		manifest: require('./web/vendor-manifest.json')
+	}));
 }
 
 module.exports = {
@@ -35,11 +39,14 @@ module.exports = {
 	},
 	output: {
 		publicPath: publicPath,
-		path: path.join(__dirname, 'client'),
+		path: path.join(__dirname, 'web'),
 		filename: 'bundle.js',
 		chunkFilename: "[name].js"
 	},
 	resolve: {
+		alias: {
+			'react-native': 'react-native-web',
+		},
 		modules: ['node_modules'],
 		extensions: ['.js']
 	},

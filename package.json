@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack --watch",
+    "vendor": "webpack --config webpack.vendor.config.js",
     "client": "node webpack.devserver",
     "test": "node ./test/schema",
     "test-live": "nodemon ./test/schema"
@@ -17,12 +18,17 @@
     "aws-signature-v4": "^1.1.0",
     "babel-polyfill": "^6.23.0",
     "crypto-js": "^3.1.9-1",
+    "graphiql": "^0.9.3",
     "graphql": "^0.9.1",
     "graphql-server-lambda": "^0.6.0",
+    "isomorphic-fetch": "^2.2.1",
     "moment": "^2.18.1",
     "mqtt": "^2.5.0",
     "paho-mqtt": "^1.0.3",
     "react-dom": "^15.4.2",
+    "react-native-vector-icons": "github:cloudle/react-native-vector-icons",
+    "react-native-web": "0.0.80",
+    "react-universal-ui": "0.0.80",
     "redis": "^2.7.1",
     "serverless-webpack": "^1.0.0-rc.4",
     "websocket-stream": "^3.3.3"
@@ -38,6 +44,7 @@
     "json-loader": "^0.5.4",
     "react": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
+    "redux-logger": "^3.0.1",
     "style-loader": "^0.16.1",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"

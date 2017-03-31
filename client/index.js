@@ -1,38 +1,42 @@
-import { createEndpoint } from './utils/request';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
-const endpoint = createEndpoint(
-	'us-west-2',
-	'a2xygykkoj5mgz.iot.us-west-2.amazonaws.com',
-	'AWS_KEY',
-	'AWS_SECRET');
+import { Button } from 'react-universal-ui';
+import * as appActions from './store/action/app';
 
-const clientId = Math.random().toString(36).substring(7);
-const client = new Paho.MQTT.Client(endpoint, clientId);
-client.connect({
-	useSSL: true,
-	timeout: 3,
-	mqttVersion: 4,
-	onSuccess: subscribe
+@connect(({app}) => {
+	return {
+		counter: app.counter,
+	}
+})
+
+export default class app extends Component {
+	render() {
+		return <View style={styles.container}>
+			<Text>Open your Chrome console!</Text>
+		</View>
+	}
+}
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	welcome: {
+		fontSize: 20,
+		textAlign: 'center',
+		margin: 10,
+	},
+	instructions: {
+		textAlign: 'center',
+		color: '#333333',
+		marginBottom: 5,
+	},
+	counterButton: {
+		backgroundColor: '#00bcd4',
+		width: 120, marginTop: 10,
+	}
 });
-
-client.onMessageArrived = onMessage;
-client.onConnectionLost = function(e) { console.log(e) };
-
-function subscribe() {
-	client.subscribe("Test/chat");
-	console.log("subscribed");
-}
-
-function send (content) {
-	const message = new Paho.MQTT.Message(content);
-	message.destinationName = "Test/chat";
-	client.send(message);
-	console.log("sent");
-}
-
-function onMessage(message) {
-	// data.messages.push(message.payloadString);
-	console.log("message received: " + message.payloadString);
-}
-
-global.send = send;

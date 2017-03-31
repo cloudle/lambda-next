@@ -6,10 +6,30 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+
+  <style>
+    :focus { outline: none; }
+    body {
+      font-family: "Avenir Next",Nunito,"Helvetica Neue",Helvetica,sans-serif;
+      font-size: 14px;
+      color: #222222;
+      font-weight: 400;
+      overflow: hidden;
+    }
+    #root {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      display: flex;
+    }
+    .touchable {
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root">Open your Chrome console!</div>
+  <div id="root"></div>
+  <script src="vendor.bundle.js"></script>
   <script src="http://localhost:3000/bundle.js"></script>
 </body>
 </html>

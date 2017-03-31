@@ -6,7 +6,7 @@ const logMode = process.env.LOG;
 
 new WebpackDevServer(webpack(config), {
 	publicPath: config.output.publicPath,
-	contentBase: 'client',
+	contentBase: 'web',
 	hot: true,
 	historyApiFallback: {
 		index: 'index.html',
