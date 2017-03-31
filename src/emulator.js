@@ -6,9 +6,10 @@ import cors from 'cors';
 const router = express.Router();
 
 router.use('/api', cors(), bodyParser.json(), (req, res) => {
-	const { query, variables } = req.body;
+	const { query, variables } = req.body,
+		clientId = req.get('clientId');
 
-	return execute(query, variables, {})
+	return execute(query, variables, { clientId, })
 		.then(result => {
 			res.json(result);
 		}).catch(error => {

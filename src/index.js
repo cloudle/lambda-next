@@ -14,10 +14,10 @@ export function greeting (event, context, callback) {
 }
 
 export function graphql (event, context, callback) {
-	const body = JSON.parse(event.body);
+	const body = JSON.parse(event.body),
+		clientId = event.headers['clientId'];
 
-	//graphql(Schema, query, null, {}, variables)
-	execute(body.query, body.variables, {})
+	execute(body.query, body.variables, { clientId, })
 		.then(response => {
 			console.log("Success", response);
 			callback(null, createResponse(200, response))
@@ -32,7 +32,8 @@ export function graphql (event, context, callback) {
 }
 
 export function execute (query, variables = {}, rootValues = {}) {
-	return runGraphQl(schema, query, null, rootValues, variables);
+	//schema, query, root, ctx, variables
+	return runGraphQl(schema, query, rootValues, {}, variables);
 }
 
 export function createResponse (statusCode, body) {

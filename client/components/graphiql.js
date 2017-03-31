@@ -4,6 +4,7 @@ import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import 'graphiql/graphiql.css';
 
+import { uniqueClientId } from '../utils';
 import { Input, Button } from 'react-universal-ui';
 import Tab from './graphiqlTab';
 
@@ -23,9 +24,10 @@ export default class GraphWorkspace extends Component {
 				backgroundColor: '#999999',
 			} : {},
 			graphQLFetcher = (graphQLParams) => {
-				let token = localStorage.getItem("sysConfigs"),
+				let token = localStorage.getItem('sysConfigs'),
 					headers = {'Content-Type': 'application/json'};
 
+				headers['clientId'] = uniqueClientId();
 				if (token) headers['Authorization'] = token;
 
 				return fetch(this.state.url, {

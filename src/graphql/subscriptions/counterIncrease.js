@@ -5,9 +5,8 @@ let counter = 0;
 
 export default {
 	type: Int,
-	resolve () {
-		console.log("It actually just relove!");
-		return increaseCounter()
-			.then(next => next);
+	resolve (root, args, ast) {
+		console.log(root, args, ast);
+		return increaseCounter().then(next => next);
 	}
 };
