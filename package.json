@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack --watch",
-    "emulate": "babel-node emulator.js",
+    "emulate": "emulate=true babel-node emulator.js",
     "vendor": "webpack --config webpack.vendor.config.js",
     "client": "node webpack.devserver",
     "test": "node ./test/schema",

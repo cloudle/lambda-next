@@ -1,6 +1,9 @@
 import { createClient } from 'redis';
 
-const endpoint = 'werner-cache.e2nrtw.0001.usw2.cache.amazonaws.com';
+const emulateMode = process.env.emulate === 'true',
+	endpoint = emulateMode
+		? 'localhost'
+		: 'werner-cache.e2nrtw.0001.usw2.cache.amazonaws.com';
 
 export function increaseCounter () {
 	const client = createClient({ host: endpoint, port: 6379 });
