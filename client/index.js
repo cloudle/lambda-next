@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
+import GraphiQl from './components/graphiql';
 import { Button } from 'react-universal-ui';
 import * as appActions from './store/action/app';
 
@@ -14,7 +15,7 @@ import * as appActions from './store/action/app';
 export default class app extends Component {
 	render() {
 		return <View style={styles.container}>
-			<Text>Open your Chrome console!</Text>
+			<GraphiQl/>
 		</View>
 	}
 }
