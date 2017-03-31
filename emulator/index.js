@@ -7,8 +7,13 @@ const router = express.Router();
 
 router.use('/api', cors(), bodyParser.json(), (req, res) => {
 	const { query, variables } = req.body;
-	console.log(query, variables);
-	res.json(execute(query, variables));
+
+	return execute(query, variables, {})
+		.then(result => {
+			res.json(result);
+		}).catch(error => {
+			res.json(error);
+		});
 });
 
 module.exports = router;
