@@ -1,6 +1,7 @@
-let graphFetch = factory('https://u602208hbb.execute-api.us-west-2.amazonaws.com/dev/graphql');
+import { publish, subscribe as gatewaySubscribe, unSubscribe } from './subscription';
+const graphFetch = factory('http://localhost:2017/api');
 
-export function query(query, vars = {}, graphOpts = {}) {
+export function query (query, vars = {}, graphOpts = {}) {
 
 	return new Promise((resolve, reject) => {
 		graphFetch(query, vars, graphOpts).then(result => {
@@ -12,6 +13,13 @@ export function query(query, vars = {}, graphOpts = {}) {
 		}).catch(errors => { //Network or HTTP errors.
 			console.warn("Outer error (Network/HTTP?):", errors);
 		});
+	});
+}
+
+export function subscribe (topic, graphQuery, vars, callback) {
+	gatewaySubscribe(topic, callback);
+	query(graphQuery, vars).then(response => {
+		callback && callback(response);
 	});
 }
 
@@ -92,3 +100,7 @@ function gatherFragments(fragments, fragment) {
 		name: nextFragmentName,
 	}
 }
+
+global.query = query;
+global.publish = publish;
+global.subscribe = subscribe;

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import GraphiQl from './components/graphiql';
 import { Button } from 'react-universal-ui';
 import * as appActions from './store/action/app';
-require('./main');
 
 @connect(({app}) => {
 	return {

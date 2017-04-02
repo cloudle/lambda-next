@@ -50,37 +50,20 @@ export function publish (eventName) {
 					region: 'us-west-2',
 					endpoint: 'a2xygykkoj5mgz.iot.us-west-2.amazonaws.com', });
 
-				console.log(`So eager?, sending updates for ${results.length} connection.`);
-				iotData.publish({
-					topic: 'Test/chat',
-					payload: `This is from GraphQl's publisher!`,
-					qos: 0,
-				}, (error, response) => {
-					if (error) console.log(error);
-					console.log("Actually ------ success!", response);
-				});
-				// for (let clientId of results) {
+				for (let clientId of results) {
 					/*TODO: Check for dead-connection and clean-up group.
 					* Query subKey, if it wasn't there => kill it's parent :p (in the group).
 					* */
-					// iotData.publish({
-					// 	topic: `subscription@${eventName}:${clientId}`,
-					// 	payload: "Your updated graphql data should be here..",
-					//	qos: 0,
-					// }, (error, response) => {
-					// 	if (error) console.log(error);
-					// 	console.log(response);
-					// });
+					iotData.publish({
+						topic: `subscription@${eventName}:${clientId}`,
+						payload: "Your updated graphql data should be here..",
+						qos: 0,
+					}, (error, response) => {
+						if (error) console.log(error);
+					});
+				}
 
-					// iotData.publish({
-					// 	topic: 'Test/chat',
-					// 	payload: 'Not yet',
-					// 	qos: 0,
-					// }, (error, response) => {
-					// 	if (error) console.log(error);
-					// 	console.log(response);
-					// })
-				// }
+				resolve(); //!Important, this will close Redis connection!
 			})
 		});
 	})

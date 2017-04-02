@@ -1,23 +1,2 @@
+export * from './helpers';
 export * from './wire';
-
-export function guid() {
-	function s4() {
-		return Math.floor((1 + Math.random()) * 0x10000)
-			.toString(16)
-			.substring(1);
-	}
-	return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-		s4() + '-' + s4() + s4() + s4();
-}
-
-export function uniqueClientId () {
-	const currentId = localStorage.getItem('clientId');
-
-	if (currentId) {
-		return currentId;
-	} else {
-		const nextId = guid();
-		localStorage.setItem('clientId', nextId);
-		return nextId;
-	}
-}
