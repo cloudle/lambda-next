@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs6.10
   memorySize: 128
-  region: us-west-2
+  region: us-east-1
 
 functions:
   greeting:
@@ -17,19 +17,34 @@ functions:
     handler: handler.graphql
     vpc:
       securityGroupIds:
-        - sg-87ba56fc
+        - sg-a90c82d6
       subnetIds:
-        - subnet-41bbdc26
-        - subnet-c591288c
-        - subnet-88190ad0
+        - subnet-9e383cc5
+        - subnet-40ab5308
+        - subnet-3889fc04
+        - subnet-8d5f1ce8
+        - subnet-fdeae3d0
     events:
       - http:
           path: /graphql
           method: get
-          cors: true
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Content-Type
+              - clientId
+              - Authorization
           integration: lambda-proxy
       - http:
           path: /graphql
           method: post
-          cors: true
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Content-Type
+              - clientId
+              - Authorization
+
           integration: lambda-proxy

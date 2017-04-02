@@ -25,7 +25,7 @@ export default class GraphWorkspace extends Component {
 			} : {},
 			graphQLFetcher = (graphQLParams) => {
 				let token = localStorage.getItem('sysConfigs'),
-					headers = {'Content-Type': 'application/json'};
+					headers = { 'Content-Type': 'application/json', };
 
 				headers['clientId'] = uniqueClientId();
 				if (token) headers['Authorization'] = token;

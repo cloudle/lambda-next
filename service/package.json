@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.36.0",
     "graphql": "^0.9.1",
     "graphql-server-lambda": "^0.6.0",
     "redis": "^2.7.1"

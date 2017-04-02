@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-iot-device-sdk": "^1.0.14",
-    "aws-sdk": "^2.34.0",
+    "aws-sdk": "^2.36.0",
     "aws-signature-v4": "^1.1.0",
     "babel-polyfill": "^6.23.0",
     "body-parser": "^1.17.1",
