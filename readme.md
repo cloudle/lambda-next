@@ -31,6 +31,8 @@ Run following command to get it run..
 ## ElastiCache check list:
 - Create elasticCache (Redis)
 - Configure VPC group for serverless (Lambda need this to connect to ElastiCache)
+- http://docs.aws.amazon.com/lambda/latest/dg/vpc-ec.html
+- http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/GettingStarted.AuthorizeAccess.html#GettingStarted.AuthorizeAccess.VPC
 
 ## Referenced articles
 - http://dev.classmethod.jp/cloud/aws/aws-iot-mqtt-over-websocket/

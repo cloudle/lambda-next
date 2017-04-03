@@ -11,7 +11,7 @@ import Tab from './graphiqlTab';
 export default class GraphWorkspace extends Component {
 	constructor (props) {
 	  super(props);
-	  const url = localStorage.getItem('apiUrl') || 'https://u602208hbb.execute-api.us-west-2.amazonaws.com/dev/graphql';
+	  const url = localStorage.getItem('apiUrl') || 'https://32xqpeyll5.execute-api.us-east-1.amazonaws.com/dev/graphql';
 	  this.state = {
 	    urlVisible: true,
 			urlInput: url,
@@ -29,6 +29,7 @@ export default class GraphWorkspace extends Component {
 
 				headers['clientId'] = uniqueClientId();
 				if (token) headers['Authorization'] = token;
+				console.log(headers);
 
 				return fetch(this.state.url, {
 					method: 'POST',

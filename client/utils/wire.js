@@ -1,5 +1,5 @@
 import { publish, subscribe as gatewaySubscribe, unSubscribe } from './subscription';
-const graphFetch = factory('http://localhost:2017/api');
+const graphFetch = factory('https://32xqpeyll5.execute-api.us-east-1.amazonaws.com/dev/graphql');
 
 export function query (query, vars = {}, graphOpts = {}) {
 

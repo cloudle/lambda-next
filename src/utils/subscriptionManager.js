@@ -46,6 +46,7 @@ export function publish (eventName) {
 		return new Promise((resolve, reject) => {
 			client.smembers(`subscription@${eventName}`, (error, results) => {
 				if (error) reject(error);
+
 				const iotData = new aws.IotData({
 					region: 'us-west-2',
 					endpoint: 'a2xygykkoj5mgz.iot.us-west-2.amazonaws.com', });
@@ -54,13 +55,16 @@ export function publish (eventName) {
 					/*TODO: Check for dead-connection and clean-up group.
 					* Query subKey, if it wasn't there => kill it's parent :p (in the group).
 					* */
-					iotData.publish({
-						topic: `subscription@${eventName}:${clientId}`,
-						payload: "Your updated graphql data should be here..",
-						qos: 0,
-					}, (error, response) => {
-						if (error) console.log(error);
-					});
+					if (clientId && clientId !== 'undefined') {
+						iotData.publish({
+							topic: `subscription@${eventName}:${clientId}`,
+							payload: "Your updated graphql data should be here..",
+							qos: 0,
+						}, (error, response) => {
+							if (error) console.log(error);
+							console.log(response);
+						});
+					}
 				}
 
 				resolve(); //!Important, this will close Redis connection!

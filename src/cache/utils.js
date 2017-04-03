@@ -4,11 +4,13 @@ const emulateMode = process.env.emulate === 'true';
 
 export const endpoint = emulateMode
 		? 'localhost'
-		: 'werner-cache.e2nrtw.0001.usw2.cache.amazonaws.com';
+		: 'werner.dl0cwy.0001.use1.cache.amazonaws.com';
 
 /*Managed Redis executor, which open and close connection safely*/
 export function execute (callback) {
-	const client = createClient({ host: endpoint, port: 6379 });
+	const client = createClient({ host: endpoint, port: 6379 })
+		.on("connect", () => console.log("connection open!"))
+		.on("end", (error) => console.log("connection safely closed."));
 
 	return new Promise((resolve, reject) => {
 		callback(client)

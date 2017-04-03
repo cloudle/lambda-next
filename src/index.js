@@ -2,10 +2,13 @@ import { graphql as runGraphQl } from 'graphql';
 import schema from './graphql';
 
 export function greeting (event, context, callback) {
+	const clientId = event.headers['clientId'];
+
 	const response = {
 		statusCode: 200,
 		body: JSON.stringify({
 			message: 'Go Serverless v1.1! Your function executed successfully!',
+			root: { clientId },
 			input: event,
 		}),
 	};
@@ -17,6 +20,7 @@ export function graphql (event, context, callback) {
 	const body = JSON.parse(event.body),
 		clientId = event.headers['clientId'];
 
+	console.log("CLIENT ID:", clientId);
 	execute(body.query, body.variables, { clientId, })
 		.then(response => {
 			console.log("Success", response);
@@ -41,6 +45,7 @@ export function createResponse (statusCode, body) {
 		statusCode,
 		headers: {
 			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': '*',
 		},
 		body: JSON.stringify(body),
 	}
