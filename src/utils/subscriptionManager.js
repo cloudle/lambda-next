@@ -1,6 +1,6 @@
 import aws from 'aws-sdk';
 import { execute } from '../cache';
-
+import { execute as graphqlExecute } from '../index';
 /* *
  * 1st param is GraphQl's root,
  * destruct it for clientId (TODO: change to more accurate id)
@@ -41,7 +41,7 @@ function writeSubscribe (client, resolve, reject, subKey) {
 	});
 }
 
-export function publish (eventName) {
+export function publish (eventName, payload = {}) {
 	return execute((client) => {
 		return new Promise((resolve, reject) => {
 			client.smembers(`subscription@${eventName}`, (error, results) => {
@@ -54,11 +54,14 @@ export function publish (eventName) {
 				for (let clientId of results) {
 					/*TODO: Check for dead-connection and clean-up group.
 					* Query subKey, if it wasn't there => kill it's parent :p (in the group).
+					* TODO: Run stored graphql query (in Redis) with payload as args,
+					* => Result of that Graphql query is the publishData client did expected.
 					* */
+
 					if (clientId && clientId !== 'undefined') {
 						iotData.publish({
 							topic: `subscription@${eventName}:${clientId}`,
-							payload: "Your updated graphql data should be here..",
+							payload: JSON.stringify(payload),
 							qos: 0,
 						}, (error, response) => {
 							if (error) console.log(error);

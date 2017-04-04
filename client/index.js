@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { history } from './store/reducers';
 
 import Welcome from './pages/welcome';
+import Messenger from './pages/messenger';
 import Navigation from './components/navigation';
 import GraphiQl from './components/graphiql';
 import { Button } from 'react-universal-ui';
@@ -29,7 +30,7 @@ class App extends Component {
 			<View style={styles.container}>
 				<Navigation/>
 				<View style={styles.mainArea}>
-					<Route component={Welcome}/>
+					<Route component={Messenger}/>
 					<Route exact path="/api" component={GraphiQl}/>
 					<Route exact path="/graphiql" component={GraphiQl}/>
 				</View>

@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
 	},
 	urlContainer: {
 		paddingTop: 10,
+		backgroundColor: '#ffffff',
 	},
 	urlWrapper: {
 		paddingLeft: 18, paddingRight: 18,
