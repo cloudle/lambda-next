@@ -1,4 +1,5 @@
 import { publish, subscribe as gatewaySubscribe, unSubscribe } from './subscription';
+import { uniqueClientId } from './helpers';
 const graphFetch = factory('https://32xqpeyll5.execute-api.us-east-1.amazonaws.com/dev/graphql');
 
 export function query (query, vars = {}, graphOpts = {}) {
@@ -39,6 +40,7 @@ function factory (graphqlUrl) {
 
 		const headers = opts.headers;
 		if (!headers.get('content-type')) opts.headers.append('content-type', 'application/json');
+		opts.headers.append('clientId', uniqueClientId());
 
 		return fetch(graphqlUrl, opts).then(function (res) {
 			return res.json();

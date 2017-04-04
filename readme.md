@@ -38,3 +38,8 @@ Run following command to get it run..
 - http://dev.classmethod.jp/cloud/aws/aws-iot-mqtt-over-websocket/
 - https://github.com/robzhu/graphql/blob/62ea0d48beef1fca6707ec4b49a975dc700273ac/rfcs/Subscriptions.md
 - https://dev-blog.apollodata.com/a-proposal-for-graphql-subscriptions-1d89b1934c18
+
+#Configures VPC for internet connection! (first link work for me)
+- https://gist.github.com/reggi/dc5f2620b7b4f515e68e46255ac042a7
+- https://medium.com/@philippholly/aws-lambda-enable-outgoing-internet-access-within-vpc-8dd250e11e12
+- https://www.youtube.com/watch?v=TlHZBlRpXyU

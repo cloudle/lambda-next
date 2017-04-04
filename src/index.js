@@ -18,9 +18,8 @@ export function greeting (event, context, callback) {
 
 export function graphql (event, context, callback) {
 	const body = JSON.parse(event.body),
-		clientId = event.headers['clientId'];
+		clientId = event.headers['clientid'] || event.headers['clientId'];
 
-	console.log("CLIENT ID:", clientId);
 	execute(body.query, body.variables, { clientId, })
 		.then(response => {
 			console.log("Success", response);

@@ -18,13 +18,12 @@ functions:
     handler: handler.graphql
     vpc:
       securityGroupIds:
-        - sg-6040211f
+        - sg-a90c82d6
       subnetIds:
-        - subnet-9e383cc5
-        - subnet-40ab5308
-        - subnet-3889fc04
-        - subnet-8d5f1ce8
-        - subnet-fdeae3d0
+        - subnet-b9495994
+        - subnet-5c824114
+        - subnet-232b2478
+        - subnet-de5d14bb
     events:
       - http:
           path: /graphql
