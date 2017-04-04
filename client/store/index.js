@@ -1,5 +1,6 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
+import { routerMiddleware } from './reducers';
 import reducers from './reducers';
 
 const DEVTOOLS = '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__',
@@ -8,7 +9,8 @@ const DEVTOOLS = '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__',
 
 export default function configureStore (initialState) {
 	const enhancers = composeEnhancers(
-		applyMiddleware(logger)
+		applyMiddleware(logger),
+		applyMiddleware(routerMiddleware),
 	);
 
 	const store = initialState

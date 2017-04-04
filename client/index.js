@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
+import { Provider, connect } from 'react-redux';
+import { Route } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
+import { history } from './store/reducers';
 
+import Welcome from './pages/welcome';
+import Navigation from './components/navigation';
 import GraphiQl from './components/graphiql';
 import { Button } from 'react-universal-ui';
 import * as appActions from './store/action/app';
+
+export default function AppContainer ({store}) {
+	return <Provider store={store}>
+		<App/>
+	</Provider>
+}
 
 @connect(({app}) => {
 	return {
@@ -12,19 +23,27 @@ import * as appActions from './store/action/app';
 	}
 })
 
-export default class app extends Component {
+class App extends Component {
 	render() {
-		return <View style={styles.container}>
-			<GraphiQl/>
-		</View>
+		return <ConnectedRouter history={history}>
+			<View style={styles.container}>
+				<Navigation/>
+				<View style={styles.mainArea}>
+					<Route component={Welcome}/>
+					<Route exact path="/api" component={GraphiQl}/>
+					<Route exact path="/graphiql" component={GraphiQl}/>
+				</View>
+			</View>
+		</ConnectedRouter>
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1, flexDirection: 'row',
+	},
+	mainArea: {
 		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	welcome: {
 		fontSize: 20,
