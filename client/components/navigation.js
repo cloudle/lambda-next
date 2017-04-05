@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 	container: {
 		width: sizes.navigationWidth,
 		backgroundColor: colors.darkBackground,
-		paddingTop: 40,
+		paddingTop: 49,
 	},
 	menuItemWrapper: {
 		alignItems: 'center', justifyContent: 'center',

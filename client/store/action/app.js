@@ -13,5 +13,5 @@ export function loadMessages (messages) {
 }
 
 export function addMessage (message, remote = false) {
-	return { type: Actions.AddMessage, message };
+	return { type: Actions.AddMessage, message, remote };
 }

@@ -1,9 +1,11 @@
 import * as Actions from '../actions';
 import { utils } from 'react-universal-ui';
 import { collectionInsert } from '../../utils';
+import { clientId } from '../../utils/subscription';
+
 const initialState = {
 	counter: 0,
-	userName: 'Anonymous',
+	userName: localStorage.getItem('userName') || 'Anonymous',
 	messages: [],
 };
 
@@ -23,8 +25,10 @@ export default utils.appReducer((state = initialState, action) => {
 })
 
 function handleMessageAdd (state, action) {
+	console.log(action.remote, action.message, action.message.ownerId === clientId);
+
 	const message = action.message || {};
-	if (action.remote && message.owner === state.userName) {
+	if (action.remote && message.ownerId === clientId) {
 		return state;
 	} else {
 		return {...state, messages: collectionInsert(state.messages, action.message, false) };

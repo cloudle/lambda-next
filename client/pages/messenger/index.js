@@ -3,6 +3,7 @@ import { ScrollView, TextInput, View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { subscribe, query, Relay, colors } from '../../utils';
+import { clientId } from '../../utils/subscription';
 import * as queries from '../../queries';
 import * as mutations from '../../mutations';
 import * as appActions from '../../store/action/app';
@@ -25,23 +26,20 @@ export default class MessengerPage extends Component {
 
 	componentWillMount () {
 		query(queries.messages)
-			.then(response => {
-				this.props.dispatch(appActions.loadMessages(response.messages));
-			})
+			.then(response => this.props.dispatch(appActions.loadMessages(response.messages)))
 			.catch(error => console.log(error));
 
-		setTimeout(() => {
-			subscribe('newMessengerMessage', `subscription {
+		subscribe('newMessengerMessage', `subscription {
 				newMessengerMessage {
 					owner
 					message
 				}
 			}`, {}, (message) => {
-				if (!message.newMessengerMessage) {
-					this.props.dispatch(appActions.addMessage(JSON.parse(message), true));
-				}
-			});
-		}, 10000)
+			if (!message.newMessengerMessage) {
+				this.props.dispatch(appActions.addMessage(JSON.parse(message), true));
+				this.messageContainer.scrollTo({y: 9999999});
+			}
+		});
 	}
 
   render () {
@@ -85,6 +83,7 @@ export default class MessengerPage extends Component {
 function onMessengerInputKeyPress ({nativeEvent}) {
 	if (nativeEvent.charCode === 13) {
 		const newMessage = {
+			ownerId: clientId,
 			owner: this.props.userName,
 			message: this.state.message,
 		};
@@ -101,6 +100,7 @@ function onMessengerTextChange (nextValue) {
 }
 
 function onUserNameChange (nextValue) {
+	localStorage.setItem('userName', nextValue);
 	this.props.dispatch(appActions.updateUserName(nextValue));
 }
 
