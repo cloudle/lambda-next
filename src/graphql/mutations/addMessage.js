@@ -6,6 +6,7 @@ import { Message } from '../types/message';
 export default {
 	type: Message,
 	args: {
+		ownerId: { type: String, },
 		owner: { type: String, },
 		message: { type: String, },
 	},

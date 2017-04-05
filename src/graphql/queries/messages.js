@@ -8,11 +8,9 @@ export default {
 	type: new GraphQLList(Message),
 	resolve () {
 		return [{
+			ownerId: 'server',
 			owner: 'Chat bot',
-			message: 'Welcome to stateless messenger!',
-		}, {
-			owner: 'Chat bot',
-			message: `Cause I'm stateless - I won't store message history anywhere (not in DB as well)`,
+			message: `Welcome to stateless messenger!\nCause I'm stateless - I won't store message history anywhere (not in DB as well)`,
 		}, ]
 	}
 }
