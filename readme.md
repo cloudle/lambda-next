@@ -36,6 +36,7 @@ Run following command to get it run..
 
 ## Referenced articles
 - http://dev.classmethod.jp/cloud/aws/aws-iot-mqtt-over-websocket/
+- http://dev.classmethod.jp/cloud/aws/aws-iot-mqtt-over-websocket-cognito-identity-unatuh/
 - https://github.com/robzhu/graphql/blob/62ea0d48beef1fca6707ec4b49a975dc700273ac/rfcs/Subscriptions.md
 - https://dev-blog.apollodata.com/a-proposal-for-graphql-subscriptions-1d89b1934c18
 
