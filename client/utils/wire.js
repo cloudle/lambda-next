@@ -1,5 +1,4 @@
-import { publish, subscribe as gatewaySubscribe, unSubscribe } from './subscription';
-import { uniqueClientId } from './helpers';
+import { clientId, publish, subscribe as gatewaySubscribe, unSubscribe } from './subscription';
 
 // const graphFetch = factory('https://32xqpeyll5.execute-api.us-east-1.amazonaws.com/dev/graphql');
 const graphFetch = factory('http://localhost:2017/api');
@@ -42,7 +41,7 @@ function factory (graphqlUrl) {
 
 		const headers = opts.headers;
 		if (!headers.get('content-type')) opts.headers.append('content-type', 'application/json');
-		opts.headers.append('clientId', uniqueClientId());
+		opts.headers.append('clientId', clientId);
 
 		return fetch(graphqlUrl, opts).then(function (res) {
 			return res.json();

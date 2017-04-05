@@ -3,37 +3,53 @@
 * It wasn't about GraphQl subscription at all (of-course it have some relation).
 * */
 
-import { createEndpoint } from './request';
-import { uniqueClientId } from './helpers';
+import { createEndpoint, getEndpoint } from './request';
+import { uniqueClientId, guid } from './helpers';
 
-let subscriptions = {};
-const endpoint = createEndpoint(
-	'us-west-2',
-	'a2xygykkoj5mgz.iot.us-west-2.amazonaws.com',
-	'AKIAIIC5WKF7EX3VBMRA',
-	'XAaiCtNYkl8H1zYKUkqiqqpjqzyudvAi1azSGNHU'),
-	clientId = uniqueClientId(),
+export const clientId = guid();
+let client, clientReady = false,
+	subscriptionQueue = [],
+	iotRegion = 'us-west-2',
+	iotEndpoint = 'a2xygykkoj5mgz.iot.us-west-2.amazonaws.com',
+	subscriptions = {};
+
+getEndpoint(iotRegion, iotEndpoint, (error, endpoint) => {
+	if (error) { console.log(error); return }
+
 	client = new Paho.MQTT.Client(endpoint, clientId);
+	client.connect({
+		useSSL: true,
+		timeout: 3,
+		mqttVersion: 4,
+		onSuccess: onConnectSuccess,
+	});
 
-client.connect({
-	useSSL: true,
-	timeout: 3,
-	mqttVersion: 4,
-	onSuccess: onConnectSuccess,
+	client.onMessageArrived = onMessageArrived;
+	client.onConnectionLost = function(e) { console.log(e) };
 });
 
-client.onMessageArrived = onMessage;
-client.onConnectionLost = function(e) { console.log(e) };
-
+//Catch up subscriptions made when connection wasn't ready yet!
 function onConnectSuccess () {
-	client.subscribe("Test/chat");
-	console.log("Connected to Gateway!");
+	console.log("Successfully connect to Device Gateway!");
+	clientReady = true;
+
+	for (let topic of subscriptionQueue) {
+		topic && client.subscribe(topic);
+	}
 }
 
 export function subscribe (topic, callback) {
 	const fullTopic = `subscription@${topic}:${clientId}`;
-	client.subscribe(fullTopic);
+	subscribeOrQueuing(fullTopic);
 	subscriptions[fullTopic] = callback;
+}
+
+export function subscribeOrQueuing (topic) {
+	if (clientReady) {
+		client.subscribe(topic);
+	} else {
+		subscriptionQueue.push(topic);
+	}
 }
 
 /*TODO: Recheck this with server-side logic*/
@@ -48,7 +64,7 @@ export function publish (topic, content) {
 	client.send(message);
 }
 
-function onMessage(message) {
+function onMessageArrived(message) {
 	const messageCallback = subscriptions[message.destinationName];
 	messageCallback && messageCallback(message.payloadString);
 }
