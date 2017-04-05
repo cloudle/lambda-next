@@ -16,7 +16,7 @@ Aws lambda targeted's graphql endpoint which write on Es6+ and could be locally 
 - [x] It could emulate Redis (ElastiCache) locally using production lambda code.
 - [x] It could emulate Aws IOT pub/sub from local run!
 - [ ] It could emulate DynamoDB locally using lambda production code.
-- [ ] It could do publish/subscribe stuff.
+- [x] It could do publish/subscribe stuff.
 
 ## For web Clients (React.js)
 Run following command to get it run..
