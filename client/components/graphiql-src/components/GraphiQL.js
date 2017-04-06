@@ -217,8 +217,7 @@ export class GraphiQL extends React.Component {
     };
 
     const docWrapStyle = {
-      display: this.state.docExplorerOpen ? 'block' : 'none',
-      width: this.state.docExplorerWidth,
+      width:  this.state.docExplorerOpen ? this.state.docExplorerWidth : 0,
     };
     const docExplorerWrapClasses = 'docExplorerWrap' +
       (this.state.docExplorerWidth < 200 ? ' doc-explorer-narrow' : '');
@@ -231,36 +230,20 @@ export class GraphiQL extends React.Component {
     return (
       <div className="graphiql-container">
         <div className="editorWrap">
-          <div className="topBarWrap">
-            <div className="topBar">
-              {logo}
-              <ExecuteButton
-                isRunning={Boolean(this.state.subscription)}
-                onRun={this.handleRunQuery}
-                onStop={this.handleStopQuery}
-                operations={this.state.operations}
-              />
-              <ToolbarButton
-                onClick={this.handlePrettifyQuery}
-                title="Prettify Query"
-                label="Prettify"
-              />
-              {toolbar}
-            </div>
-            {
-              !this.state.docExplorerOpen &&
-              <button
-                className="docExplorerShow"
-                onClick={this.handleToggleDocs}>
-                {'Docs'}
-              </button>
-            }
-          </div>
           <div
             ref={n => { this.editorBarComponent = n; }}
             className="editorBar"
             onMouseDown={this.handleResizeStart}>
             <div className="queryWrap" style={queryWrapStyle}>
+              <div className="query-header">
+                <div className="topBar">
+                  <ToolbarButton
+                    onClick={this.handlePrettifyQuery}
+                    title="Prettify Query"
+                    label="Prettify"/>
+									{toolbar}
+                </div>
+              </div>
               <QueryEditor
                 ref={n => { this.queryEditorComponent = n; }}
                 schema={this.state.schema}
@@ -288,6 +271,13 @@ export class GraphiQL extends React.Component {
               </div>
             </div>
             <div className="resultWrap">
+              <div className="result-header">
+                <ExecuteButton
+                  isRunning={Boolean(this.state.subscription)}
+                  onRun={this.handleRunQuery}
+                  onStop={this.handleStopQuery}
+                  operations={this.state.operations}/>
+              </div>
               {
                 this.state.isWaitingForResponse &&
                 <div className="spinner-container">
@@ -303,6 +293,11 @@ export class GraphiQL extends React.Component {
           </div>
         </div>
         <div className={docExplorerWrapClasses} style={docWrapStyle}>
+          <button
+            className="docs-button"
+            onClick={this.handleToggleDocs}>
+						{'Docs'}
+          </button>
           <div
             className="docExplorerResizer"
             onMouseDown={this.handleDocsResizeStart}

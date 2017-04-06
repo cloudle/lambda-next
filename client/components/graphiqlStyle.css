@@ -26,8 +26,35 @@
   width: 100%;
 }
 
-.graphiql-container .topBarWrap {
-  /*display: none !important;*/
+.graphiql-container .query-header,
+.graphiql-container .result-header {
+  display: flex; position: relative;
+  height: 80px; align-items: center;
+}
+
+.graphiql-container .query-header {
+  background-color: #282C34;
+  border-top: solid 6px #3e4451;
+  box-sizing: border-box;
+}
+
+.graphiql-container .query-header .topBar {
+  background: transparent !important; border: none;
+}
+
+.graphiql-container .result-header .execute-button-wrap {
+  position: absolute; top: 15px; left: -32px;
+  display: flex; justify-content: center; align-items: center;
+  margin: 0; width: 60px; height: 60px;
+  border-radius: 50%;
+  background-color: #b9bfc4;
+  border: solid 5px #282c34;
+  box-sizing: border-box;
+}
+
+.graphiql-container .result-header .execute-button-wrap .execute-button {
+  background: transparent;
+  box-shadow: none; border: none;
 }
 
 .graphiql-container .editorWrap {
@@ -168,6 +195,18 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 3;
+}
+
+.graphiql-container .docExplorerWrap .docs-button {
+  position: absolute; top: 180px; left: -48px;
+  transform: rotate(-90deg);
+  text-transform: uppercase;
+  background-color: #E06C75;
+  border: none; color: white;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 10px 16px;
+  cursor: pointer;
 }
 
 .graphiql-container .docExplorerResizer {
@@ -1108,7 +1147,8 @@ span.CodeMirror-selectedtext {
 }
 
 .graphiql-container .doc-explorer {
-  background: white;
+  background: white; height: 100%;
+  border-left: solid 6px #E06C75;
 }
 
 .graphiql-container .doc-explorer-title-bar {
