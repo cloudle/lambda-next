@@ -56,20 +56,7 @@ export default class GraphWorkspace extends Component {
 				</View>
 				{this.renderUrl()}
 			</View>
-			<GraphiQL
-				ref={c => { global.iql = c }}
-				fetcher={graphQLFetcher}>
-				<GraphiQL.Group>
-					<View>
-						<Text>Hi there!</Text>
-					</View>
-				</GraphiQL.Group>
-				{/*<GraphiQL.Toolbar>*/}
-					{/*<GraphiQL.ToolbarButton*/}
-						{/*title="ToolbarButton"*/}
-						{/*label="History!!"/>*/}
-				{/*</GraphiQL.Toolbar>*/}
-			</GraphiQL>
+			<GraphiQL fetcher={graphQLFetcher}/>
 		</View>
 	}
 
