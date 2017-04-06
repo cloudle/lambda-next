@@ -236,13 +236,11 @@ export class GraphiQL extends React.Component {
             onMouseDown={this.handleResizeStart}>
             <div className="queryWrap" style={queryWrapStyle}>
               <div className="query-header">
-                <div className="topBar">
-                  <ToolbarButton
-                    onClick={this.handlePrettifyQuery}
-                    title="Prettify Query"
-                    label="Prettify"/>
-									{toolbar}
-                </div>
+                <ToolbarButton
+                  onClick={this.handlePrettifyQuery}
+                  title="Prettify Query"
+                  label="Prettify"/>
+                {toolbar}
               </div>
               <QueryEditor
                 ref={n => { this.queryEditorComponent = n; }}
@@ -278,16 +276,18 @@ export class GraphiQL extends React.Component {
                   onStop={this.handleStopQuery}
                   operations={this.state.operations}/>
               </div>
-              {
-                this.state.isWaitingForResponse &&
+              { this.state.isWaitingForResponse &&
                 <div className="spinner-container">
                   <div className="spinner" />
-                </div>
-              }
+                </div>}
+
               <ResultViewer
                 ref={c => { this.resultComponent = c; }}
-                value={this.state.response}
-              />
+                value={this.state.response}/>
+              { !this.state.response &&
+                <div className="intro-message">
+                  Hit the Play Button to get a response here
+                </div>}
               {footer}
             </div>
           </div>

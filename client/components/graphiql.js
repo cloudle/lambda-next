@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
 	container: {
 		position: 'absolute', top: 0, right: 0, left: 0, bottom: 0,
 		backgroundColor: tabContainerBackground,
+		paddingLeft: 6,
 	},
 	headingContainer: {
 
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
 	tabItemContainer: {
 		flex: 1,
 		flexDirection: 'row',
+		paddingLeft: 40,
 	},
 	tabCommandContainer: {
 		flexDirection: 'row',
