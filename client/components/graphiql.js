@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import GraphiQL from 'graphiql';
+import GraphiQL from './graphiql-src';
 import fetch from 'isomorphic-fetch';
-import 'graphiql/graphiql.css';
 import './graphiqlStyle.css';
 
 import { colors } from '../utils';

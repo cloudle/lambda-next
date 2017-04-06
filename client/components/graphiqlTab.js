@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		color: '#a0a0a0', fontSize: 15,
+		fontWeight: '200',
 	},
 	iconContainer: {
   	alignItems: 'center',
