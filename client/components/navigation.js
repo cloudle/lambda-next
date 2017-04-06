@@ -33,13 +33,13 @@ function navigatePage (route) {
 const styles = StyleSheet.create({
 	container: {
 		width: sizes.navigationWidth,
-		backgroundColor: colors.darkBackground,
-		paddingTop: 49,
+		backgroundColor: colors.darken(colors.darkBackground, 5),
+		paddingTop: 62,
 	},
 	menuItemWrapper: {
 		alignItems: 'center', justifyContent: 'center',
 		height: sizes.navigationWidth,
-		backgroundColor: colors.darkerBackground
+		backgroundColor: colors.darken(colors.darkBackground, 2),
 	},
 	menuIcon: {
 		color: '#ffffff',

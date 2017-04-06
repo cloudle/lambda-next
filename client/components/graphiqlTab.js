@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
+import { colors } from '../utils';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class GraphiQlTab extends Component {
@@ -9,16 +10,18 @@ export default class GraphiQlTab extends Component {
 	};
 
 	render () {
-  	const activeStyle = this.props.active ? {
-			backgroundColor: '#ffffff',
-			marginBottom: -1,
-		} : {};
+  	const activeContainerStyle = this.props.active
+				? { backgroundColor: activeTabBackground } : {},
+			activeTextStyle = this.props.active
+				? { color: '#ffffff' }: {};
 
     return <View
 			className="touchable"
-			style={[styles.container, activeStyle]}>
+			style={[styles.container, activeContainerStyle]}>
 			<View style={styles.titleContainer}>
-				<Text>{this.props.title || 'Untitled'}</Text>
+				<Text style={[styles.title, activeTextStyle]}>
+					{this.props.title || 'Untitled'}
+				</Text>
 			</View>
 			<View style={styles.iconContainer}>
 				<TouchableOpacity style={styles.iconWrapper}>
@@ -29,21 +32,30 @@ export default class GraphiQlTab extends Component {
   }
 }
 
+export const tabRadius = 2,
+	tabContainerBackground = colors.darken(colors.darkBackground, 4),
+	activeTabBackground = colors.lighten(colors.darkBackground, 10),
+	inActiveTabBackground = colors.lighten(colors.darkBackground, 4);
+
 const styles = StyleSheet.create({
   container: {
   	flexDirection: 'row',
   	paddingLeft: 18,
-		borderRightWidth: 1,
-		borderColor: '#dddddd',
+		marginLeft: 8, marginTop: 15,
+		backgroundColor: inActiveTabBackground,
+		borderTopRightRadius: tabRadius, borderTopLeftRadius: tabRadius,
 	},
 	titleContainer: {
 		justifyContent: 'center',
+	},
+	title: {
+		color: '#a0a0a0', fontSize: 15,
 	},
 	iconContainer: {
   	alignItems: 'center',
 		justifyContent: 'center',
 	},
 	iconWrapper: {
-		padding: 16, paddingLeft: 10,
+		padding: 14, paddingLeft: 10,
 	},
 });

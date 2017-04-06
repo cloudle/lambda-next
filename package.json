@@ -8,6 +8,7 @@
     "emulate": "emulate=true babel-node emulator.js",
     "vendor": "webpack --config webpack.vendor.config.js",
     "client": "node webpack.devserver",
+    "build-client": "ENV=prod webpack --config webpack.client.js",
     "test": "node ./test/schema",
     "test-live": "nodemon ./test/schema"
   },

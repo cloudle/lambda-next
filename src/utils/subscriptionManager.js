@@ -61,7 +61,7 @@ export function publish (eventName, payload = {}) {
 					if (clientId && clientId !== 'undefined') {
 						iotData.publish({
 							topic: `subscription@${eventName}:${clientId}`,
-							payload: JSON.stringify(payload),
+							payload: new Buffer(JSON.stringify(payload)),
 							qos: 0,
 						}, (error, response) => {
 							if (error) console.log(error);

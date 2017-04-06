@@ -5,7 +5,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 const env = process.env.ENV || 'dev';
 const port = process.env.PORT || 3000;
 const prod = env === 'prod';
-const publicPath = `http://0.0.0.0:${port}/`;
+const publicPath = prod ? 'http://lamda-next.s3-website-us-east-1.amazonaws.com/' : `http://0.0.0.0:${port}/`;
 const entry = './index.web.js';
 
 const hot = [
@@ -33,7 +33,7 @@ if (env === 'dev') {
 
 module.exports = {
 	cache: true,
-	devtool: prod ? null : 'eval-source-map',
+	devtool: prod ? '' : 'eval-source-map',
 	entry: {
 		app: prod ? [entry] : [...hot, entry]
 	},

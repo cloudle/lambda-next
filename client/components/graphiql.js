@@ -3,17 +3,19 @@ import { StyleSheet, View, Text } from 'react-native';
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import 'graphiql/graphiql.css';
+import './graphiqlStyle.css';
 
+import { colors } from '../utils';
 import { clientId } from '../utils/subscription';
 import { Input, Button } from 'react-universal-ui';
-import Tab from './graphiqlTab';
+import Tab, { activeTabBackground, inActiveTabBackground, tabContainerBackground } from './graphiqlTab';
 
 export default class GraphWorkspace extends Component {
 	constructor (props) {
 	  super(props);
 	  const url = localStorage.getItem('apiUrl') || 'https://32xqpeyll5.execute-api.us-east-1.amazonaws.com/dev/graphql';
 	  this.state = {
-	    urlVisible: true,
+	    urlVisible: false,
 			urlInput: url,
 			url,
 	  }
@@ -55,12 +57,19 @@ export default class GraphWorkspace extends Component {
 				</View>
 				{this.renderUrl()}
 			</View>
-			<GraphiQL fetcher={graphQLFetcher}>
-				<GraphiQL.Toolbar>
-					<GraphiQL.ToolbarButton
-						title="ToolbarButton"
-						label="History"/>
-				</GraphiQL.Toolbar>
+			<GraphiQL
+				ref={c => { global.iql = c }}
+				fetcher={graphQLFetcher}>
+				<GraphiQL.Group>
+					<View>
+						<Text>Hi there!</Text>
+					</View>
+				</GraphiQL.Group>
+				{/*<GraphiQL.Toolbar>*/}
+					{/*<GraphiQL.ToolbarButton*/}
+						{/*title="ToolbarButton"*/}
+						{/*label="History!!"/>*/}
+				{/*</GraphiQL.Toolbar>*/}
 			</GraphiQL>
 		</View>
 	}
@@ -91,14 +100,14 @@ export default class GraphWorkspace extends Component {
 const styles = StyleSheet.create({
 	container: {
 		position: 'absolute', top: 0, right: 0, left: 0, bottom: 0,
+		backgroundColor: tabContainerBackground,
 	},
 	headingContainer: {
-		borderBottomWidth: 1, borderColor: '#dddddd',
+
 	},
 	tabContainer: {
 		flexDirection: 'row',
-		backgroundColor: '#f6f6f6',
-		borderBottomWidth: 1, borderColor: '#dddddd',
+		borderBottomWidth: 5, borderColor: activeTabBackground,
 	},
 	tabItemContainer: {
 		flex: 1,
